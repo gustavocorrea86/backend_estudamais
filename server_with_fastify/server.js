@@ -93,6 +93,31 @@ fastify.get("/anos", async (req, reply) => {
   }
 });
 
+fastify.get("/questoes/:disciplines", async (req, reply) => {
+  const disciplinesListJson = req.params.disciplines;
+  const disciplinesList = JSON.parse(disciplinesListJson);
+  console.log("disciplinesList", disciplinesList);
+  var listResult = [];
+  try {
+    for (var i in disciplinesList) {
+      await Database.findAll({
+        where: {
+          displice: disciplinesList[i],
+        },
+      }).then((result) => {
+        for (var i in result) {
+          listResult.push(result[i]["dataValues"]);
+        }
+        console.log("listResult", listResult);
+      });
+    }
+    return reply.send(listResult);
+  } catch (err) {
+      console.log(err);
+    return reply.send(err);
+  }
+});
+
 fastify.get("/questao/:idQuestion", async (req, reply) => {
   var listResult = [];
   var idsJson = req.params.idQuestion;
@@ -100,15 +125,11 @@ fastify.get("/questao/:idQuestion", async (req, reply) => {
   console.log("$idQuestion", idsQuestion);
   try {
     for (var i in idsQuestion) {
-      await Database.findByPk(idsQuestion[i]).then(
-        (result) => {
-          listResult.push(result);
-         
-        }
-      );
+      await Database.findByPk(idsQuestion[i]).then((result) => {
+        listResult.push(result);
+      });
     }
     return reply.send(listResult);
-    
   } catch (err) {
     console.log(err);
     return reply.send(err);

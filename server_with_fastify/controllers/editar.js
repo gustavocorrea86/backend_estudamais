@@ -17,20 +17,20 @@ import Database from "../database/database.js";
 
 // const { JSDOM } = jsdom;
 // const upload = multer({ dest: "images/" });
-let imageUpdate;
-let imageBufferUpdated;
-let nameImageDirUpdated;
-let nameImageDir;
-let elementarySchoolUpdated;
-let schoolYearUpdated;
-let displiceUpdated;
-let questionUpdated;
-let subjetcUpdated;
-let answerUpdated;
-let alternativeAUpdated;
-let alternativeBUpdated;
-let alternativeCUpdated;
-let alternativeDUpdated;
+let imageUpdate = '';
+let imageBufferUpdated = '';
+let nameImageDirUpdated  = '';
+let nameImageDir  = '';
+let elementarySchoolUpdated  = '';
+let schoolYearUpdated  = '';
+let displiceUpdated  = '';
+let questionUpdated  = '';
+let subjetcUpdated  = '';
+let answerUpdated  = '';
+let alternativeAUpdated  = '';
+let alternativeBUpdated  = '';
+let alternativeCUpdated  = '';
+let alternativeDUpdated  = '';
 
 
 export const editar_questao = async (req, reply) => {
